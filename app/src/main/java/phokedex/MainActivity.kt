@@ -33,7 +33,10 @@ class MainActivity : ComponentActivity() {
 
                     composable("detail/{name}") { backStackEntry ->
                         val name = backStackEntry.arguments?.getString("name") ?: ""
-                        PokemonDetailScreen(name)
+                        PokemonDetailScreen(
+                            navController = navController,
+                            name = name
+                        )
                     }
                 }
             }

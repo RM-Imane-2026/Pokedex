@@ -21,6 +21,7 @@ class PokemonListViewModel : ViewModel() {
         loadNextPage()
     }
 
+    /*
     fun loadNextPage() {
         viewModelScope.launch {
             try {
@@ -42,5 +43,41 @@ class PokemonListViewModel : ViewModel() {
                 _uiState.value = UiState.Error("Error de conexión")
             }
         }
+    }*/
+
+    fun loadNextPage() {
+        currentPage++
+        loadPage()
     }
+
+    fun loadPreviousPage() {
+        if (currentPage > 0) {
+            currentPage--
+            loadPage()
+        }
+    }
+
+    fun hasPreviousPage(): Boolean {
+        return currentPage > 0
+    }
+
+    private fun loadPage() {
+
+        viewModelScope.launch {
+            _uiState.value = UiState.Loading
+
+            try {
+                val response = repository.getPokemonList(
+                    limit = pageSize,
+                    offset = currentPage * pageSize
+                )
+
+                _uiState.value = UiState.Success(response.results)
+
+            } catch (e: Exception) {
+                _uiState.value = UiState.Error("Error de conexión")
+            }
+        }
+    }
+
 }
