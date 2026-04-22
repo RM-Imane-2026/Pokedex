@@ -13,15 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-
 @Composable
 fun PokemonItem(
-    index: Int,
+    id: Int,
     name: String,
     onClick: () -> Unit
 ) {
+
     val imageUrl =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$index.png"
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 
     Row(
         modifier = Modifier
@@ -39,8 +39,8 @@ fun PokemonItem(
         Spacer(modifier = Modifier.width(16.dp))
 
         Column {
-            Text(text = "#$index")
-            Text(text = name.replaceFirstChar { it.uppercase() })
+            Text(text = "#$id")
+            Text(text = name)
         }
     }
 }

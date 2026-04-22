@@ -2,7 +2,6 @@ package phokedex
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
@@ -11,7 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.lazy.*
 
 @Composable
 fun PokemonListScreen(navController: NavController) {
@@ -44,11 +43,11 @@ fun PokemonListScreen(navController: NavController) {
 
             LazyColumn {
 
-                itemsIndexed(list) { index, pokemon ->
+                items(list) { pokemon ->
 
                     PokemonItem(
-                        index = index + 1,
-                        name = pokemon.name,
+                        id = pokemon.id,
+                        name = pokemon.formattedName,
                         onClick = {
                             navController.navigate("detail/${pokemon.name}")
                         }
@@ -56,13 +55,12 @@ fun PokemonListScreen(navController: NavController) {
                 }
 
                 item {
-                    Button(
-                        onClick = { viewModel.loadNextPage() }
-                    ) {
+                    Button(onClick = { viewModel.loadNextPage() }) {
                         Text("Cargar más")
                     }
                 }
             }
+
         }
     }
 }
