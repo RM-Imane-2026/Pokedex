@@ -1,29 +1,24 @@
 package pokedex.ui.detail.mapper
 
-import pokedex.data.datasource.model.PokemonResultDto
-import pokedex.data.datasource.model.entity.PokemonEntity
-import pokedex.domain.model.Pokemon
+import pokedex.domain.model.PokemonDetail
+import pokedex.ui.detail.model.PokemonDetailUi
 
-// API → Domain
-fun PokemonResultDto.toDomain(): Pokemon {
-    return Pokemon(
-        name = name,
-        url = url
-    )
-}
+private const val HEIGHT_DIVISOR = 10.0
+private const val WEIGHT_DIVISOR = 10.0
+private const val HEIGHT_UNIT = " m"
+private const val WEIGHT_UNIT = " kg"
 
-// Domain → Entity
-fun Pokemon.toEntity(): PokemonEntity {
-    return PokemonEntity(
-        name = name,
-        url = url
-    )
-}
 
-// Entity → Domain
-fun PokemonEntity.toDomain(): Pokemon {
-    return Pokemon(
+fun PokemonDetail.toUi(): PokemonDetailUi {
+    val formattedHeight = "${height / HEIGHT_DIVISOR}$HEIGHT_UNIT"
+    val formattedWeight = "${weight / WEIGHT_DIVISOR}$WEIGHT_UNIT"
+
+    return PokemonDetailUi(
+        id = id,
         name = name,
-        url = url
+        height = formattedHeight,
+        weight = formattedWeight,
+        image = image,
+        types = types
     )
 }

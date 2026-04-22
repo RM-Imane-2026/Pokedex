@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import pokedex.data.datasource.api.PokeApi
+import pokedex.data.datasource.api.PokemonApi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -32,6 +32,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providePokeApi(retrofit: Retrofit): PokeApi =
-        retrofit.create(PokeApi::class.java)
+    fun providePokeApi(retrofit: Retrofit): PokemonApi =
+        retrofit.create(PokemonApi::class.java)
 }
