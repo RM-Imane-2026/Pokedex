@@ -1,8 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.kotlin.kapt)
 }
+
 
 android {
     namespace = "com.example.phokedex"
@@ -40,6 +43,9 @@ android {
         compose = true
     }
 
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -75,5 +81,12 @@ dependencies {
 
     implementation(libs.moshi.kotlin)
 
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
 
 }
