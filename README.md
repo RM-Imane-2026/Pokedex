@@ -51,7 +51,7 @@ El objetivo era construir una experiencia fluida que permitiera:
 
 ## Demo de Funcionamiento
 
-En el video adjunto (`video/demo.mp4`) se puede observar:
+En el video adjunto [demo](video/demo.mp4) se puede observar:
 1. **Flujo Ideal**: Carga rápida y navegación entre varias páginas.
 2. **Navegación**: Entrada y salida de detalles sin pérdida de estado.
 3. **Prueba de Fuego**: Activación de **Modo Avión** para mostrar la pantalla de error y recuperación instantánea al restaurar la red.
