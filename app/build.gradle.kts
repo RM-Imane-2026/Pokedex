@@ -7,11 +7,11 @@ plugins {
 
 
 android {
-    namespace = "com.example.phokedex"
+    namespace = "com.example.pokedex"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.phokedex"
+        applicationId = "com.example.pokedex"
         minSdk = 30
         targetSdk = 35
         versionCode = 1

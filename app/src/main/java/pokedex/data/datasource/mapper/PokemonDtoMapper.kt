@@ -23,14 +23,13 @@ fun PokemonListResponseDto.toDomain(): PokemonListResponse {
 fun PokemonDto.toDomain(): Pokemon {
     val id = url
         .trimEnd('/')
-        .split("/")
-        .last()
+        .substringAfterLast("/")
         .toInt()
 
     return Pokemon(
         id = id,
         name = name.replaceFirstChar { it.uppercase() },
-        url = "$SPRITE_BASE_URL$id$SPRITE_EXTENSION"
+        imagenUrl = "$SPRITE_BASE_URL$id$SPRITE_EXTENSION"
     )
 }
 
@@ -40,7 +39,10 @@ fun PokemonDetailDto.toDomain(): PokemonDetail {
         name = name.replaceFirstChar { it.uppercase() },
         height = height,
         weight = weight,
-        image = "$SPRITE_BASE_URL$id$SPRITE_EXTENSION",
-        types = types.map { it.type.name.replaceFirstChar { it.uppercase() } }
+        image = sprites.other.officialArtwork.frontDefault
+            ?: "$SPRITE_BASE_URL$id$SPRITE_EXTENSION",
+        types = types.map {
+            it.type.name.replaceFirstChar { char -> char.uppercase() }
+        }
     )
 }

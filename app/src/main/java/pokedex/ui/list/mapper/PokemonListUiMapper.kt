@@ -7,6 +7,6 @@ fun Pokemon.toUi(): PokemonItemUi {
     return PokemonItemUi(
         id = id,
         name = name,
-        image = url
+        image = imagenUrl
     )
 }

@@ -15,6 +15,7 @@ import pokedex.ui.list.composable.ListEmpty
 import pokedex.ui.list.composable.ListError
 import pokedex.ui.list.composable.ListLoading
 import pokedex.ui.list.viewmodel.PokemonListViewModel
+import pokedex.ui.navigation.Screen
 
 @Composable
 fun PokemonListScreen(
@@ -32,15 +33,9 @@ fun PokemonListScreen(
 
             is UiState.Loading -> ListLoading()
 
-            is UiState.Error -> ListError (
+            is UiState.Error -> ListError(
                 onRetry = { viewModel.retry() },
-                onBack = { 
-                    if (state is UiState.Error) {
-                        viewModel.dismissError()
-                    } else {
-                        navController.popBackStack()
-                    }
-                }
+                onBack = { viewModel.dismissError() }
             )
 
             is UiState.Empty -> ListEmpty()
@@ -49,7 +44,7 @@ fun PokemonListScreen(
                 ListContent(
                     list = currentState.data,
                     onItemClick = { name ->
-                        navController.navigate("detail/$name")
+                        navController.navigate(Screen.Detail.createRoute(name))
                     },
                     onNextPage = { viewModel.loadNextPage() },
                     onPreviousPage = { viewModel.loadPreviousPage() },

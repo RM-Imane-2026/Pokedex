@@ -47,7 +47,12 @@ fun PokemonDetailScreen(
                 )
             }
 
-           else -> {}
+            is UiState.Empty -> {
+                DetailError(
+                    onBack = { navController.popBackStack() },
+                    onRetry = { viewModel.loadPokemonDetail(name) }
+                )
+            }
         }
 
 

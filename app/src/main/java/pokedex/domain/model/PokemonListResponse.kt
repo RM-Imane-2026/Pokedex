@@ -9,5 +9,5 @@ data class PokemonListResponse(
 data class Pokemon(
     val id: Int,
     val name: String,
-    val url: String
+    val imagenUrl: String
 )
