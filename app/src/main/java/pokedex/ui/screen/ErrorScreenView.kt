@@ -1,4 +1,4 @@
-package pokedex.ui.core.screen
+package pokedex.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

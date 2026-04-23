@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import pokedex.data.core.ResultWrapper
 import pokedex.domain.repository.PokemonRepository
-import pokedex.ui.core.state.UiState
+import pokedex.ui.state.UiState
 import pokedex.ui.detail.mapper.toUi
 import pokedex.ui.detail.model.PokemonDetailUi
 import javax.inject.Inject

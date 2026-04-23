@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import pokedex.data.core.ResultWrapper
 import pokedex.domain.repository.PokemonRepository
-import pokedex.ui.core.state.UiState
+import pokedex.ui.state.UiState
 import pokedex.ui.list.mapper.toUi
 import pokedex.ui.list.model.PokemonItemUi
 import javax.inject.Inject
@@ -22,22 +22,31 @@ class PokemonListViewModel @Inject constructor(
     val uiState: StateFlow<UiState<List<PokemonItemUi>>> = _uiState
 
     private var currentPage = 0
+    private var lastRequestedPage = 0
+    private var lastSuccessData: List<PokemonItemUi>? = null
     private val pageSize = 20
 
     init {
-        loadNextPage()
+        loadPage(0)
     }
 
+    fun retry() {
+        loadPage(lastRequestedPage)
+    }
+
+    fun dismissError() {
+        lastSuccessData?.let {
+            _uiState.value = UiState.Success(it)
+        }
+    }
 
     fun loadNextPage() {
-        currentPage++
-        loadPage()
+        loadPage(currentPage + 1)
     }
 
     fun loadPreviousPage() {
         if (currentPage > 0) {
-            currentPage--
-            loadPage()
+            loadPage(currentPage - 1)
         }
     }
 
@@ -45,13 +54,18 @@ class PokemonListViewModel @Inject constructor(
         return currentPage > 0
     }
 
-    private fun loadPage() {
+    private fun loadPage(page: Int) {
+        lastRequestedPage = page
         viewModelScope.launch {
             _uiState.value = UiState.Loading
 
-            when (val result = repo.getPokemonList(offset = currentPage * pageSize)) {
+            val result = repo.getPokemonList(offset = page * pageSize)
+
+            when (result) {
                 is ResultWrapper.Success -> {
+                    currentPage = page
                     val pokemonItems = result.data.results.map { it.toUi() }
+                    lastSuccessData = pokemonItems
                     _uiState.value = UiState.Success(pokemonItems)
                 }
                 is ResultWrapper.Error -> {
@@ -61,5 +75,6 @@ class PokemonListViewModel @Inject constructor(
             }
         }
     }
+
 
 }

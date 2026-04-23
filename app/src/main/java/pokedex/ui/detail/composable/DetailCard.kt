@@ -10,7 +10,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import coil.compose.AsyncImage
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import pokedex.ui.detail.model.PokemonDetailUi
 
 @Composable
@@ -27,7 +30,12 @@ fun DetailCard(pokemon: PokemonDetailUi) {
         ) {
 
             AsyncImage(
-                model = pokemon.image,
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(pokemon.image)
+                    .crossfade(true)
+                    .networkCachePolicy(CachePolicy.ENABLED)
+                    .diskCachePolicy(CachePolicy.ENABLED)
+                    .build(),
                 contentDescription = pokemon.name,
                 modifier = Modifier
                     .size(160.dp)

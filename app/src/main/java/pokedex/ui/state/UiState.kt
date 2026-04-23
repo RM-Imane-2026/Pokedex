@@ -1,4 +1,4 @@
-package pokedex.ui.core.state
+package pokedex.ui.state
 
 sealed class UiState<out T> {
 

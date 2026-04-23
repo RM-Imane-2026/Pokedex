@@ -1,4 +1,4 @@
-package pokedex.ui.lista.screen
+package pokedex.ui.list.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -8,16 +8,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import pokedex.ui.core.state.UiState
+import pokedex.ui.state.UiState
 import pokedex.ui.list.composable.ListColors
 import pokedex.ui.list.composable.ListContent
 import pokedex.ui.list.composable.ListEmpty
 import pokedex.ui.list.composable.ListError
 import pokedex.ui.list.composable.ListLoading
 import pokedex.ui.list.viewmodel.PokemonListViewModel
-
-private var currentPage = 0
-private val pageSize = 20
 
 @Composable
 fun PokemonListScreen(
@@ -36,8 +33,14 @@ fun PokemonListScreen(
             is UiState.Loading -> ListLoading()
 
             is UiState.Error -> ListError (
-                onRetry = { viewModel.loadNextPage() },
-                onBack = { navController.popBackStack() }
+                onRetry = { viewModel.retry() },
+                onBack = { 
+                    if (state is UiState.Error) {
+                        viewModel.dismissError()
+                    } else {
+                        navController.popBackStack()
+                    }
+                }
             )
 
             is UiState.Empty -> ListEmpty()

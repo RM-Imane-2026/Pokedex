@@ -1,4 +1,5 @@
-package pokedex.data.di
+package pokedex.di
+
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

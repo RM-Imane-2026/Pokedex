@@ -1,7 +1,7 @@
 package pokedex.ui.list.composable
 
 import androidx.compose.runtime.Composable
-import pokedex.ui.core.screen.ErrorScreenView
+import pokedex.ui.screen.ErrorScreenView
 
 @Composable
 fun ListError(

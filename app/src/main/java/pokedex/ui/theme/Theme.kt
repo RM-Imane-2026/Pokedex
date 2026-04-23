@@ -1,4 +1,4 @@
-package pokedex.ui.core.theme
+package pokedex.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

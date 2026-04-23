@@ -1,11 +1,11 @@
-package pokedex.ui.core.navigation
+package pokedex.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import pokedex.ui.detail.screen.PokemonDetailScreen
-import pokedex.ui.lista.screen.PokemonListScreen
+import pokedex.ui.list.screen.PokemonListScreen
 
 @Composable
 fun AppNavigation(

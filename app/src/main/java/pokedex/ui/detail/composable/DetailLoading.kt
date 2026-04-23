@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.CircularProgressIndicator
-import pokedex.ui.core.screen.ErrorScreenView
+import pokedex.ui.screen.ErrorScreenView
 
 @Composable
 fun DetailLoading() {

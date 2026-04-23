@@ -1,4 +1,4 @@
-package pokedex.ui.core.navigation
+package pokedex.ui.navigation
 
 sealed class Screen(val route: String) {
 

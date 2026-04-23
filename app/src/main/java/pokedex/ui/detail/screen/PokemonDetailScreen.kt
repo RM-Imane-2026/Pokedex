@@ -7,7 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import pokedex.ui.core.state.UiState
+import pokedex.ui.state.UiState
 import pokedex.ui.detail.composable.*
 import pokedex.ui.detail.viewmodel.PokemonDetailViewModel
 

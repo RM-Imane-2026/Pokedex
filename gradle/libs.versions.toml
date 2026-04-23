@@ -6,7 +6,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
-kotlin = "2.0.21"
+kotlin = "1.9.24"
 composeBom = "2024.10.01"
 retrofit = "2.9.0"
 moshi = "1.15.1"
@@ -15,6 +15,8 @@ lifecycleViewModelCompose = "2.8.7"
 coilCompose = "2.6.0"
 hilt = "2.52"
 hiltNavigationCompose = "1.2.0"
+composeCompiler = "1.5.14"
+
 
 
 [libraries]
@@ -58,7 +60,6 @@ androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navig
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
